@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import com.wiredbrain.common.DataAccessException;
 import com.wiredbrain.common.ServiceException;
 import com.wiredbrain.order.dao.OrderDao;
-import com.wiredbrain.order.integration.WMSUnavailableException;
-import com.wiredbrain.order.integration.WarehouseManagementService;
+import com.wiredbrain.order.integration.KMSUnavailableException;
+import com.wiredbrain.order.integration.KitchenManagementService;
 import com.wiredbrain.order.model.domain.OrderCompletionAudit;
 import com.wiredbrain.order.model.domain.OrderSummary;
 import com.wiredbrain.order.model.entity.OrderEntity;
@@ -118,7 +118,7 @@ public class OrderServiceImpl implements OrderService {
 			
 			orderMessage.setItems(itemMessageList);
 			
-			WarehouseManagementService.sendOrder(orderMessage);
+			KitchenManagementService.sendOrder(orderMessage);
 			
 			Date completionDate = new Date();
 			OrderCompletionAudit auditRecord = new OrderCompletionAudit();
@@ -130,7 +130,7 @@ public class OrderServiceImpl implements OrderService {
 		} catch (DataAccessException e) {
 			// Log error
 			throw new ServiceException("Data access error while completing order", e);
-		} catch (WMSUnavailableException e) {
+		} catch (KMSUnavailableException e) {
 			// Log error
 			throw new ServiceException("WMS was unavailable when sending the order", e);
 		}

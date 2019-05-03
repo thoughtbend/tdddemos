@@ -1,10 +1,10 @@
 package com.wiredbrain.order.integration;
 
-public class WMSUnavailableException extends Exception {
+public class KMSUnavailableException extends Exception {
 
 	private static final long serialVersionUID = -6118793265317370209L;
 
-	public WMSUnavailableException(String message) {
+	public KMSUnavailableException(String message) {
 		super(message);
 	}
 }

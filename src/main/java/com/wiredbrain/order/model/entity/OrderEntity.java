@@ -30,12 +30,6 @@ public class OrderEntity {
 	
 	@Column
 	private Long customerId;
-	
-	@Column
-	private Long shippingAddressId;
-	
-	@Column
-	private Long billingAddressId;
 
 	@Column
 	private Date completionDate;
@@ -92,22 +86,6 @@ public class OrderEntity {
 
 	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
-	}
-
-	public long getShippingAddressId() {
-		return shippingAddressId;
-	}
-
-	public void setShippingAddressId(long shippingAddressId) {
-		this.shippingAddressId = shippingAddressId;
-	}
-
-	public long getBillingAddressId() {
-		return billingAddressId;
-	}
-
-	public void setBillingAddressId(long billingAddressId) {
-		this.billingAddressId = billingAddressId;
 	}
 
 	public OrderSourceEntity getOrderSourceEntity() {
