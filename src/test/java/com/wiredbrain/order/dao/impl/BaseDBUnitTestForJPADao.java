@@ -10,8 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.h2.Driver;
 import org.h2.tools.RunScript;
 import org.junit.jupiter.api.AfterAll;
@@ -33,7 +35,11 @@ public class BaseDBUnitTestForJPADao {
 		dbProps.put("password", DBInfo.PASSWORD);
 		
 		Connection jdbcConn = Driver.load().connect(DBInfo.URL, dbProps);
+		
 		CONN = new DatabaseConnection(jdbcConn);
+		
+		CONN.getConfig().setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new H2DataTypeFactory());
+		
 		RunScript.execute(CONN.getConnection(), new FileReader("tabledef/b2csite.ddl.sql"));
 		
 		final Map<Object, Object> props = new HashMap<>();
