@@ -9,13 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.TableGenerator;
 
 @Entity
 public class OrderItemEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 
 	@Column
@@ -26,6 +25,15 @@ public class OrderItemEntity {
 
 	@Column
 	private BigDecimal sellingPrice;
+	
+	@Column 
+	private String promotionCode;
+	
+	@Column
+	private BigDecimal discount;
+	
+	@Column
+	private BigDecimal tax;
 
 	@Column
 	private Date addedToOrderDateTime;
@@ -63,6 +71,30 @@ public class OrderItemEntity {
 
 	public void setSellingPrice(BigDecimal sellingPrice) {
 		this.sellingPrice = sellingPrice;
+	}
+
+	public String getPromotionCode() {
+		return promotionCode;
+	}
+
+	public void setPromotionCode(String promotionCode) {
+		this.promotionCode = promotionCode;
+	}
+
+	public BigDecimal getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(BigDecimal discount) {
+		this.discount = discount;
+	}
+
+	public BigDecimal getTax() {
+		return tax;
+	}
+
+	public void setTax(BigDecimal tax) {
+		this.tax = tax;
 	}
 
 	public Date getAddedToOrderDateTime() {

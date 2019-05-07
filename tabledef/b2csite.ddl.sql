@@ -35,7 +35,7 @@
     create table OrderEntity_OrderItemEntity (
         OrderEntity_id bigint not null,
         orderItemList_id bigint not null,
-        unique (orderItemList_id)
+        primary key (orderItemList_id)
     );
 
     create table OrderItemEntity (
@@ -43,6 +43,9 @@
         addedToOrderDateTime timestamp,
         quantity integer,
         sellingPrice numeric,
+        promotionCode varchar(30),
+        discount numeric,
+        tax numeric,
         sku varchar(255),
         owningOrder_id bigint,
         primary key (id)

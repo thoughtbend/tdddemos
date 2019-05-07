@@ -1,5 +1,6 @@
 package com.wiredbrain.order.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 		// Goal - interact with the dao to gather entities and 
 		// create summary domain objects
 		
-		List<OrderSummary> resultList = new LinkedList<>();
+		List<OrderSummary> resultList = null;
 		
 		try {
 			List<OrderEntity> orderEntityList = this.orderDao.findByCustomerId(customerId);
@@ -62,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 			throw new ServiceException("Data access error occurred", e);
 		}
 		
-		return resultList;
+		return (resultList != null) ? resultList : new ArrayList<>();
 	}
 	
 	public String openNewOrder(long customerId) throws ServiceException {
