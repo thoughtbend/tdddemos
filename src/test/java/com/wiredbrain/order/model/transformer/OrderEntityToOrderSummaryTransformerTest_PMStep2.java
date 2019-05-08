@@ -22,7 +22,7 @@ import com.wiredbrain.order.model.entity.OrderItemEntity;
 
 @PrepareForTest(value= {OrderEntityToOrderSummaryTransformer.class})
 @RunWith(PowerMockRunner.class)
-public class OrderEntityToOrderSummaryTransformerTest_PMStep1 {
+public class OrderEntityToOrderSummaryTransformerTest_PMStep2 {
 	
 	private OrderEntityToOrderSummaryTransformer target = null;
 	
@@ -124,5 +124,35 @@ public class OrderEntityToOrderSummaryTransformerTest_PMStep1 {
 		
 	}
 	
+	@Test
+	public void test_calculateTotal_success() throws Exception {
+		
+		// Here we want to avoid the spy as we have nothing to mock, and are testing a private
+		this.target = new OrderEntityToOrderSummaryTransformer();
+		
+		// Setup
+		OrderEntity orderFixture = new OrderEntity();
+		orderFixture.setOrderNumber("12343");
+		orderFixture.setOrderItemList(new ArrayList<>());
+		
+		OrderItemEntity firstOrderItemFixture = new OrderItemEntity();
+		firstOrderItemFixture.setQuantity(2);
+		firstOrderItemFixture.setSellingPrice(new BigDecimal("5.35"));
+		orderFixture.getOrderItemList().add(firstOrderItemFixture);
+		
+		OrderItemEntity secondOrderItemFixture = new OrderItemEntity();
+		secondOrderItemFixture.setQuantity(1);
+		secondOrderItemFixture.setSellingPrice(new BigDecimal(".99"));
+		orderFixture.getOrderItemList().add(secondOrderItemFixture);
+		
+		// Execute
+		Method privateMethod = Whitebox.getMethod(OrderEntityToOrderSummaryTransformer.class, "calculateTotal", java.util.List.class);
+		BigDecimal result = (BigDecimal) privateMethod.invoke(this.target, orderFixture.getOrderItemList());
+		
+		// Verify
+		Assert.assertNotNull("result should not be null", result);
+		
+		// We aren't mocking, so don't verify the mock
+	}
 	
 }

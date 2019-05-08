@@ -8,3 +8,4 @@
 <!ELEMENT row (value | null | none)*>
 <!ELEMENT value (#PCDATA)>
 <!ELEMENT null EMPTY>
+<!ELEMENT none EMPTY>
