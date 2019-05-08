@@ -154,5 +154,4 @@ public class OrderEntityToOrderSummaryTransformerTest_PMStep2 {
 		
 		// We aren't mocking, so don't verify the mock
 	}
-	
 }

@@ -123,6 +123,4 @@ public class OrderEntityToOrderSummaryTransformerTest_PMStep1 {
 		Assert.assertEquals(new BigDecimal("0.01"), result.getTotalAmount());
 		
 	}
-	
-	
 }
