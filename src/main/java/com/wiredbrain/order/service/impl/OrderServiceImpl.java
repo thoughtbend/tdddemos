@@ -3,6 +3,7 @@ package com.wiredbrain.order.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -76,8 +77,8 @@ public class OrderServiceImpl implements OrderService {
 		while (!insertSuccessful && insertAttempt <= MAX_INSERT_ATTEMPT) {
 			
 			try {
-				OrderEntity receivedOrderEntity = orderDao.insert(newOrderEntity);
-				if (receivedOrderEntity != null) {
+				Optional<Long> receivedOrderEntityId = orderDao.insert(newOrderEntity);
+				if (receivedOrderEntityId.isPresent()) {
 					insertSuccessful = true;
 				}
 				else {

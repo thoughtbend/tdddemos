@@ -1,6 +1,7 @@
 package com.wiredbrain.order.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,15 +26,14 @@ public class OrderDaoJpaImpl implements OrderDao {
 	}
 
 	@Override
-	public OrderEntity insert(OrderEntity order) throws DataAccessException {
+	public Optional<Long> insert(OrderEntity order) throws DataAccessException {
 		this.entityManager.persist(order);
-		return order;
+		return Optional.ofNullable(order.getId());
 	}
 
 	@Override
-	public OrderEntity update(OrderEntity order) throws DataAccessException {
+	public void update(OrderEntity order) throws DataAccessException {
 		this.entityManager.persist(order);
-		return order;
 	}
 
 	@Override

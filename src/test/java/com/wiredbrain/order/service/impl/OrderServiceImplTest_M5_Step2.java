@@ -3,6 +3,7 @@ package com.wiredbrain.order.service.impl;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
@@ -11,9 +12,13 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -26,7 +31,7 @@ import com.wiredbrain.order.model.entity.OrderEntity;
 import com.wiredbrain.order.model.transformer.OrderEntityToOrderSummaryTransformer;
 
 @ExtendWith(MockitoExtension.class)
-public class OrderServiceImplTest_M5_Step1 {
+public class OrderServiceImplTest_M5_Step2 {
 	
 	@InjectMocks
 	private OrderServiceImpl target = new OrderServiceImpl();
@@ -99,5 +104,28 @@ public class OrderServiceImplTest_M5_Step1 {
 			() -> verifyZeroInteractions(this.mockTransformer),
 			() -> assertEquals(0, result.size())
 		);
+	}
+	
+	@Test
+	public void test_openNewOrder_success() throws Exception {
+		
+		// Setup
+		when(this.mockOrderDao.insert(ArgumentMatchers.any(OrderEntity.class))).thenReturn(Optional.of(42L));
+		
+		// Execute
+		String result = this.target.openNewOrder(1L);
+		
+		// Verify
+		assertNotNull("result should not be null", result);
+		
+		ArgumentCaptor<OrderEntity> orderEntityCaptor = ArgumentCaptor.forClass(OrderEntity.class);
+		verify(this.mockOrderDao).insert(orderEntityCaptor.capture());
+		
+		final OrderEntity capturedOrderEntity = orderEntityCaptor.getValue();
+		assertNotNull("capturedOrderEntity should not be null", capturedOrderEntity);
+		assertEquals(capturedOrderEntity.getOrderNumber(), result);
+		assertDoesNotThrow(() -> {
+			UUID.fromString(capturedOrderEntity.getOrderNumber());
+		});
 	}
 }
