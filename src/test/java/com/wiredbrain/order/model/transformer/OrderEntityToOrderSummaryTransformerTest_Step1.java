@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.wiredbrain.order.model.domain.OrderSummary;

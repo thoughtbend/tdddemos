@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.persistence.EntityTransaction;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
@@ -15,13 +14,11 @@ import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.dataset.xml.XmlDataSet;
 import org.dbunit.operation.DatabaseOperation;
-import org.dbunit.util.fileloader.XlsDataFileLoader;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.wiredbrain.order.dao.impl.OrderDaoJpaImpl;
 import com.wiredbrain.order.model.entity.OrderEntity;
 import com.wiredbrain.order.model.entity.OrderItemEntity;
 

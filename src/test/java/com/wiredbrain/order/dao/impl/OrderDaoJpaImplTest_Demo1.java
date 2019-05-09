@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.wiredbrain.order.dao.impl.OrderDaoJpaImpl;
 import com.wiredbrain.order.model.entity.OrderEntity;
 
 public class OrderDaoJpaImplTest_Demo1 extends BaseDBUnitTestForJPADao {
