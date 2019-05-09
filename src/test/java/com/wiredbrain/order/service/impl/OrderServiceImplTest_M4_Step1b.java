@@ -18,7 +18,7 @@ import com.wiredbrain.order.model.domain.OrderSummary;
 import com.wiredbrain.order.model.entity.OrderEntity;
 import com.wiredbrain.order.model.transformer.OrderEntityToOrderSummaryTransformer;
 
-public class OrderServiceImplTest_Step1 {
+public class OrderServiceImplTest_M4_Step1b {
 
 	@Test
 	public void test_getOrderSummary_success() throws Exception {

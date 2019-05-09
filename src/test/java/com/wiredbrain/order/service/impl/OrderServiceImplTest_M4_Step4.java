@@ -15,11 +15,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.wiredbrain.common.DataAccessException;
 import com.wiredbrain.common.ServiceException;
@@ -28,7 +30,8 @@ import com.wiredbrain.order.model.domain.OrderSummary;
 import com.wiredbrain.order.model.entity.OrderEntity;
 import com.wiredbrain.order.model.transformer.OrderEntityToOrderSummaryTransformer;
 
-public class OrderServiceImplTest_Step4 {
+@ExtendWith(MockitoExtension.class)
+public class OrderServiceImplTest_M4_Step4 {
 	
 	@InjectMocks
 	private OrderServiceImpl target = new OrderServiceImpl();
@@ -38,11 +41,6 @@ public class OrderServiceImplTest_Step4 {
 	
 	@Mock
 	private OrderEntityToOrderSummaryTransformer mockTransformer;
-	
-	@BeforeEach
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-	}
 
 	@Test
 	public void test_getOrderSummary_success() throws Exception {
